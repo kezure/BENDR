@@ -1,3 +1,6 @@
+import torch
+from torch import nn
+
 from dn3.transforms.channels import (
     DEEP_1010_CHS_LISTING,
     SCALE_IND,

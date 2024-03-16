@@ -3,6 +3,7 @@ from abc import ABCMeta
 from copy import deepcopy
 
 import numpy as np
+from torch import nn
 
 from ..data.dataset import DN3ataset
 from .layers import *

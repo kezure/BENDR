@@ -143,6 +143,11 @@ ignore = [
     "ERA", # : 役立つこともあるが、コメントアウトしていないコードも警告されるので無視する
     "ANN201", # missing-return-type-public-function: 
     "ANN202", # missing-return-type-private-function:
+    "INP001",
+    "E501", # line too long
+    "C408", # Unnecessary dict call - rewrite as a literal
+    "TD", # flake8-todo
+    "FIX", # flake8-fixme
     "PLR",  # pylint Refactor 
     "RSE", # flake8-raise
     "D", # pydocstyle, Docstringを中途半端にしか書いていないので、除外する
