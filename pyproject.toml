@@ -13,6 +13,7 @@ pyyaml = "^6.0.1"
 numpy = "^1.26.4"
 pandas = "^2.2.1"
 tqdm = "^4.66.2"
+bs4 = "^0.0.2"
 
 [tool.poetry.dev-dependencies]
 pre-commit = "^3.6.0"
