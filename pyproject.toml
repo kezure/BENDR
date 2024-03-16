@@ -141,13 +141,9 @@ ignore = [
     "ANN002", # missing-type-args
     "ANN003", # missing-type-kwargs
     "ERA", # : 役立つこともあるが、コメントアウトしていないコードも警告されるので無視する
-
-    # いずれ無視しないようにする
     "ANN201", # missing-return-type-public-function: 
     "ANN202", # missing-return-type-private-function:
     "PLR",  # pylint Refactor 
-
-    # 以下のルールはannofabcliのコードに合っていないので無効化した
     "RSE", # flake8-raise
     "D", # pydocstyle, Docstringを中途半端にしか書いていないので、除外する
     "C90", # mccabe 
