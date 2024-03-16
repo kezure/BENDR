@@ -1443,3 +1443,5 @@ data/*
 results/*
 *.pt
 *.pth
+.ruff_cache/*
+
