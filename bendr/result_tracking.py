@@ -1,6 +1,5 @@
 import pandas as pd
 import tqdm
-
 from dn3.data.dataset import Dataset, Thinker
 from dn3.trainable.processes import BaseProcess
 

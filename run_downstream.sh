@@ -7,9 +7,9 @@ python3 bendr/downstream.py linear --random-init --results-filename "results/lin
 python3 bendr/downstream.py BENDR --random-init --results-filename "results/BENDR_random_init.xlsx"
 
 # Train LO/MSO from checkpoint
-# python3 bendr/downstream.py linear --results-filename "results/linear.xlsx"
-# python3 bendr/downstream.py BENDR --results-filename "results/BENDR.xlsx"
+python3 bendr/downstream.py linear --results-filename "results/linear.xlsx"
+python3 bendr/downstream.py BENDR --results-filename "results/BENDR.xlsx"
 
 # Train LO/MSO from checkpoint with frozen encoder
-# python3 bendr/downstream.py linear --freeze-encoder --results-filename "results/linear_freeze_encoder.xlsx"
-# python3 bendr/downstream.py BENDR --freeze-encoder --results-filename "results/BENDR_freeze_encoder.xlsx"
+python3 bendr/downstream.py linear --freeze-encoder --results-filename "results/linear_freeze_encoder.xlsx"
+python3 bendr/downstream.py BENDR --freeze-encoder --results-filename "results/BENDR_freeze_encoder.xlsx"

@@ -275,7 +275,7 @@ class TIDNet(Classifier):
                 activation=activation,
             ),
             nn.MaxPool2d((1, pooling)),
-            nn.Dropout2d(do),
+            nn.Dropout1d(do),
         )
 
         self.spatial = DenseSpatialFilter(

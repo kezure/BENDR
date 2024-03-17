@@ -109,7 +109,7 @@ class ConvBlock2D(nn.Module):
             groups=groups,
             bias=not batch_norm,
         )
-        self.dropout = nn.Dropout2d(p=do_rate)
+        self.dropout = nn.Dropout1d(p=do_rate)
         self.batch_norm = nn.BatchNorm2d(out_filters)
 
     def forward(self, input, **kwargs):
@@ -172,7 +172,7 @@ class DenseFilter(nn.Module):
                 kernel,
                 padding=tuple(k // 2 for k in kernel),
             ),
-            nn.Dropout2d(do),
+            nn.Dropout1d(do),
         )
 
     def forward(self, x):
@@ -314,7 +314,7 @@ class TemporalFilter(nn.Module):
 
         for i in range(depth):
             dil = depth - i
-            conv = nn.utils.weight_norm(
+            conv = nn.utils.parametrizations.weight_norm(
                 nn.Conv2d(
                     channels if i == 0 else filters,
                     filters,
@@ -323,7 +323,7 @@ class TemporalFilter(nn.Module):
                     padding=(0, dil * (temp_len - 1) // 2),
                 )
             )
-            net.append(nn.Sequential(conv, activation(), nn.Dropout2d(dropout)))
+            net.append(nn.Sequential(conv, activation(), nn.Dropout1d(dropout)))
         if self.residual_style.lower() == "netwise":
             self.net = nn.Sequential(*net)
             self.residual = nn.Conv2d(channels, filters, (1, 1))
@@ -398,7 +398,7 @@ class ConvEncoderBENDR(_BENDREncoder):
                         stride=downsample,
                         padding=width // 2,
                     ),
-                    nn.Dropout2d(dropout),
+                    nn.Dropout1d(dropout),
                     nn.GroupNorm(encoder_h // 2, encoder_h),
                     nn.GELU(),
                 ),
@@ -410,7 +410,7 @@ class ConvEncoderBENDR(_BENDREncoder):
                 "projection-1",
                 nn.Sequential(
                     nn.Conv1d(in_features, in_features, 1),
-                    nn.Dropout2d(dropout * 2),
+                    nn.Dropout1d(dropout * 2),
                     nn.GroupNorm(in_features // 2, in_features),
                     nn.GELU(),
                 ),
@@ -477,7 +477,7 @@ class EncodingAugment(nn.Module):
         )
         nn.init.normal_(conv.weight, mean=0, std=2 / transformer_dim)
         nn.init.constant_(conv.bias, 0)
-        conv = nn.utils.weight_norm(conv, dim=2)
+        conv = nn.utils.parametrizations.weight_norm(conv, dim=2)
         self.relative_position = nn.Sequential(conv, nn.GELU())
 
         self.input_conditioning = nn.Sequential(
@@ -588,7 +588,7 @@ class BENDRContextualizer(nn.Module):
             )
             nn.init.normal_(conv.weight, mean=0, std=2 / self._transformer_dim)
             nn.init.constant_(conv.bias, 0)
-            conv = nn.utils.weight_norm(conv, dim=2)
+            conv = nn.utils.parametrizations.weight_norm(conv, dim=2)
             self.relative_position = nn.Sequential(conv, nn.GELU())
 
         self.input_conditioning = nn.Sequential(

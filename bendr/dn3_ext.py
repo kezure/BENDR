@@ -282,7 +282,7 @@ class RefinedBENDR(StrideClassifier):
                 f"projection-{p}",
                 nn.Sequential(
                     nn.Conv1d(encoder_h, encoder_h, 1),
-                    nn.Dropout2d(dropout),
+                    nn.Dropout1d(dropout),
                     nn.BatchNorm1d(encoder_h),
                     nn.GELU(),
                 ),
@@ -552,7 +552,7 @@ class ConvEncoderBENDR(_BENDREncoder):
                         stride=downsample,
                         padding=width // 2,
                     ),
-                    nn.Dropout2d(dropout),
+                    nn.Dropout1d(dropout),
                     nn.GroupNorm(encoder_h // 2, encoder_h),
                     nn.GELU(),
                 ),
@@ -564,7 +564,7 @@ class ConvEncoderBENDR(_BENDREncoder):
                 "projection-1",
                 nn.Sequential(
                     nn.Conv1d(in_features, in_features, 1),
-                    nn.Dropout2d(dropout * 2),
+                    nn.Dropout1d(dropout * 2),
                     nn.GroupNorm(in_features // 2, in_features),
                     nn.GELU(),
                 ),
@@ -631,7 +631,7 @@ class EncodingAugment(nn.Module):
         )
         nn.init.normal_(conv.weight, mean=0, std=2 / transformer_dim)
         nn.init.constant_(conv.bias, 0)
-        conv = nn.utils.weight_norm(conv, dim=2)
+        conv = nn.utils.parametrizations.weight_norm(conv, dim=2)
         self.relative_position = nn.Sequential(conv, nn.GELU())
 
         self.input_conditioning = nn.Sequential(
@@ -742,7 +742,7 @@ class BENDRContextualizer(nn.Module):
             )
             nn.init.normal_(conv.weight, mean=0, std=2 / self._transformer_dim)
             nn.init.constant_(conv.bias, 0)
-            conv = nn.utils.weight_norm(conv, dim=2)
+            conv = nn.utils.parametrizations.weight_norm(conv, dim=2)
             self.relative_position = nn.Sequential(conv, nn.GELU())
 
         self.input_conditioning = nn.Sequential(
