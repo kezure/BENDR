@@ -3,13 +3,13 @@ from abc import ABCMeta
 from copy import deepcopy
 
 import numpy as np
-from torch import nn
+from torch import Tensor, nn
 
 from ..data.dataset import DN3ataset
 from .layers import *
 
 
-class DN3BaseModel(nn.Module):
+class DN3BaseModel(nn.Module):  # type: ignore[misc]
     """
     This is a base model used by the provided models in the library that is meant to make those included in this
     library as powerful and multi-purpose as is reasonable.
@@ -22,7 +22,7 @@ class DN3BaseModel(nn.Module):
     and *classification*.
     """
 
-    def __init__(self, samples, channels, return_features=True):
+    def __init__(self, samples: Tensor, channels: Tensor, return_features: bool = True):
         super().__init__()
         self.samples = samples
         self.channels = channels

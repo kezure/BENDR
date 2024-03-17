@@ -5,16 +5,15 @@ import mne
 import numpy as np
 import tqdm
 import utils
-from dn3_ext import BendingCollegeWav2Vec, BENDRContextualizer, ConvEncoderBENDR
-from result_tracking import ThinkerwiseResultTracker
-
 from dn3.configuratron import ExperimentConfig
 from dn3.transforms.instance import TemporalCrop
+from dn3_ext import BendingCollegeWav2Vec, BENDRContextualizer, ConvEncoderBENDR
+from result_tracking import ThinkerwiseResultTracker
 
 mne.set_log_level(False)
 
 
-def parse_args():
+def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Fine-tunes BENDER models.")
     parser.add_argument("--pretraining-config", default="configs/pretraining.yml")
     parser.add_argument("--sequence-config", default="configs/sequence_evaluation.yml")
@@ -41,8 +40,8 @@ def parse_args():
     return parser.parse_args()
 
 
-def run(dataset, ds_name, args, pre_exp, seq_exp, result_tracker):
-    encoder = ConvEncoderBENDR(20, encoder_h=args.hidden_size)
+def run(dataset, ds_name, args, pre_exp, seq_exp, result_tracker) -> None:
+    encoder = ConvEncoderBENDR(20, encoder_h=args.hidden_size)  # type: ignore[un-typed-call]
     tqdm.tqdm.write(encoder.description(pre_exp.global_sfreq, dataset.sequence_length))
     contextualizer = BENDRContextualizer(
         encoder.encoder_h, layer_drop=pre_exp.bending_college_args.layer_drop
