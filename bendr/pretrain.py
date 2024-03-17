@@ -5,12 +5,11 @@ import argparse
 import mne
 import torch
 import tqdm
-from dn3_ext import BendingCollegeWav2Vec, BENDRContextualizer, ConvEncoderBENDR
-from torch.utils.data import ConcatDataset
-
 from dn3.configuratron import ExperimentConfig
 from dn3.transforms.batch import RandomTemporalCrop
 from dn3.transforms.instance import To1020
+from dn3_ext import BendingCollegeWav2Vec, BENDRContextualizer, ConvEncoderBENDR
+from torch.utils.data import ConcatDataset
 
 mne.set_log_level(False)
 

@@ -8,12 +8,11 @@ import parse
 import torch
 import torch.nn.functional as F
 import tqdm
-from torch import nn
-
 from dn3.trainable.layers import Flatten, Permute
 from dn3.trainable.models import Classifier, StrideClassifier
 from dn3.trainable.processes import BaseProcess, StandardClassification
 from dn3.utils import DN3ConfigException
+from torch import nn
 
 
 class LinearHeadBENDR(Classifier):

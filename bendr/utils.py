@@ -1,9 +1,8 @@
 import torch
 import yaml
-from dn3_ext import BENDRClassification, LinearHeadBENDR, LoaderERPBCI
-
 from dn3.metrics.base import auroc, balanced_accuracy
 from dn3.transforms.instance import To1020
+from dn3_ext import BENDRClassification, LinearHeadBENDR, LoaderERPBCI
 
 CUSTOM_LOADERS = dict(
     erpbci=LoaderERPBCI,
