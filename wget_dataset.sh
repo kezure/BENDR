@@ -11,7 +11,8 @@ cd ..
 cd ..
 mkdir -p ./data/bci_iv_2a
 cd ./data/bci_iv_2a
-wget https://www.bbci.de/competition/download/competition_iv/BCICIV_2a_gdf.zip
+# wget https://www.bbci.de/competition/download/competition_iv/BCICIV_2a_gdf.zip
+wget --no-check-certificate https://www.bbci.de/competition/download/competition_iv/BCICIV_2a_gdf.zip
 unzip BCICIV_2a_gdf.zip
 
 echo Download Kaggle ERN Competition
@@ -21,6 +22,7 @@ cd ..
 cd ..
 mkdir -p ./data/ern
 cd ./data/ern
+# pre setup ~/.kaggle/kaggle.json
 kaggle competitions download -c inria-bci-challenge
 unzip inria-bci-challenge.zip
 unzip test.zip
