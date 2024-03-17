@@ -888,8 +888,15 @@ class StandardClassification(BaseProcess):
 
         # Make sure balance method is not passed to DataLoader at this point.
         loader_kwargs.pop("balance_method", None)
-
-        return DataLoader(dataset, **loader_kwargs)
+        new_dic = {}
+        for key, value in loader_kwargs.items():
+            if key != "_d":
+                new_dic[key] = value
+            else:
+                continue
+                # for k, v in value.items():
+                #     new_dic[k] = v
+        return DataLoader(dataset, **new_dic)
 
 
 def get_label_balance(dataset):

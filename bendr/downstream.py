@@ -7,12 +7,11 @@ import objgraph
 import torch
 import tqdm
 import utils
-from dn3_ext import BENDRClassification, LinearHeadBENDR
-from result_tracking import ThinkerwiseResultTracker
-
 from dn3.configuratron import ExperimentConfig
 from dn3.data.dataset import Thinker
 from dn3.trainable.processes import StandardClassification
+from dn3_ext import BENDRClassification, LinearHeadBENDR
+from result_tracking import ThinkerwiseResultTracker
 
 mne.set_log_level(False)
 
