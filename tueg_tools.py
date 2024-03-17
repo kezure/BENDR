@@ -346,7 +346,7 @@ if __name__ == "__main__":
     # Example usage:
     parser = argparse.ArgumentParser(description="TUEG Downloader")
     parser.add_argument(
-        "--path", default="./data/tueg", help="The path to save the dataset to."
+        "--path", default="./data/tueg/tuh_eeg_abnormal", help="The path to save the dataset to."
     )
     parser.add_argument(
         "--url",
