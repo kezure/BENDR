@@ -12,7 +12,6 @@ version = "0.1.0"
 description = ""
 authors = ["kezure <3447723+kezure@users.noreply.github.com>"]
 readme = "README.md"
-include = ["bendr", "dn3"]
 
 [tool.poetry.dependencies]
 python = "^3.11"
